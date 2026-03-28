@@ -1,0 +1,1 @@
+import{j as a,m as n}from"./framer-6bM_wBny.js";function e({children:i,className:t=""}){return a.jsx(n.div,{className:t,initial:{opacity:0},animate:{opacity:1},exit:{opacity:0},transition:{duration:.35,ease:"easeInOut"},children:i})}export{e as P};

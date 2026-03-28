@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════════════
+   SALIBIYYAT — Manuscript Aesthetic Design System
+   ═══════════════════════════════════════════════ */
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { overflow-x: hidden; }
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: #0a0908; }
+  ::-webkit-scrollbar-thumb { background: rgba(212,168,72,0.2); border-radius: 10px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(212,168,72,0.4); }
+  ::selection { background: rgba(212,168,72,0.25); color: #e8dcc8; }
+}
+
+@layer components {
+
+  /* ─── Film grain overlay ─── */
+  .grain-overlay {
+    position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 256px 256px;
+  }
+
+  /* ─── Islamic geometry ─── */
+  .bg-islamic-stars {
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 10 L58 38 L90 38 L64 56 L72 84 L50 68 L28 84 L36 56 L10 38 L42 38Z' fill='none' stroke='rgba(212,168,72,0.018)' stroke-width='0.4'/%3E%3Ccircle cx='50' cy='50' r='30' fill='none' stroke='rgba(212,168,72,0.012)' stroke-width='0.3'/%3E%3C/svg%3E");
+    background-size: 100px 100px;
+  }
+
+  /* ─── Arabesque pattern ─── */
+  .bg-arabesque {
+    background-image: url("data:image/svg+xml,%3Csvg width='160' height='160' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='80' cy='80' r='50' fill='none' stroke='rgba(212,168,72,0.015)' stroke-width='0.4'/%3E%3Ccircle cx='80' cy='80' r='35' fill='none' stroke='rgba(212,168,72,0.012)' stroke-width='0.3'/%3E%3Cpath d='M80 30 L80 130 M30 80 L130 80 M45 45 L115 115 M115 45 L45 115' stroke='rgba(212,168,72,0.01)' stroke-width='0.25'/%3E%3Cpath d='M80 30 Q110 50 130 80 Q110 110 80 130 Q50 110 30 80 Q50 50 80 30Z' fill='none' stroke='rgba(212,168,72,0.018)' stroke-width='0.35'/%3E%3C/svg%3E");
+    background-size: 160px 160px;
+  }
+
+  /* ─── Glass card ─── */
+  .glass-card {
+    @apply relative rounded-lg overflow-hidden;
+    background: linear-gradient(145deg, rgba(34,30,24,0.7), rgba(26,22,18,0.5));
+    border: 1px solid rgba(212,168,72,0.08);
+    backdrop-filter: blur(6px);
+    transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .glass-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(212,168,72,0.03) 0%, transparent 50%);
+    pointer-events: none; opacity: 0; transition: opacity 0.45s ease;
+  }
+  .glass-card:hover {
+    border-color: rgba(212,168,72,0.2);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(212,168,72,0.06), inset 0 1px 0 rgba(212,168,72,0.05);
+    transform: translateY(-3px);
+  }
+  .glass-card:hover::before { opacity: 1; }
+
+  .glass-card-flat {
+    @apply relative rounded-lg overflow-hidden;
+    background: linear-gradient(145deg, rgba(34,30,24,0.7), rgba(26,22,18,0.5));
+    border: 1px solid rgba(212,168,72,0.08);
+    backdrop-filter: blur(6px);
+  }
+
+  /* ─── Dividers ─── */
+  .gold-line {
+    @apply h-px;
+    background: linear-gradient(90deg, transparent, rgba(168,132,58,0.4), rgba(212,168,72,0.6), rgba(168,132,58,0.4), transparent);
+  }
+  .gold-line-ornate {
+    @apply relative h-px;
+    background: linear-gradient(90deg, transparent, rgba(168,132,58,0.4), rgba(212,168,72,0.6), rgba(168,132,58,0.4), transparent);
+  }
+  .gold-line-ornate::before {
+    content: '✦'; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(212,168,72,0.4); font-size: 0.65rem;
+    background: #0f0d0a; padding: 0 8px;
+  }
+
+  /* ─── Text effects ─── */
+  .text-glow { text-shadow: 0 0 50px rgba(212,168,72,0.2), 0 0 100px rgba(212,168,72,0.08), 0 2px 4px rgba(0,0,0,0.5); }
+  .text-glow-strong { text-shadow: 0 0 30px rgba(212,168,72,0.3), 0 0 60px rgba(212,168,72,0.15), 0 0 120px rgba(212,168,72,0.05); }
+
+  /* ─── Tag ─── */
+  .tag {
+    @apply inline-flex items-center px-2.5 py-0.5 text-xs rounded;
+    background: rgba(212,168,72,0.04); border: 1px solid rgba(212,168,72,0.12); color: #c4b8a4;
+    transition: all 0.3s ease;
+  }
+  .tag:hover { border-color: rgba(212,168,72,0.25); background: rgba(212,168,72,0.08); }
+
+  /* ─── Command palette ─── */
+  .cmd-backdrop {
+    @apply fixed inset-0 z-[2000] flex items-start justify-center pt-[18vh];
+    background: rgba(10,9,8,0.75); backdrop-filter: blur(16px);
+  }
+  .cmd-box {
+    @apply w-full max-w-xl rounded-xl overflow-hidden;
+    background: linear-gradient(145deg, #1e1a15, #151210);
+    border: 1px solid rgba(212,168,72,0.15);
+    box-shadow: 0 24px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(212,168,72,0.05);
+  }
+  .cmd-input {
+    @apply w-full bg-transparent text-parchment text-base py-4 px-5 outline-none;
+    font-family: 'Crimson Pro', serif; caret-color: #d4a848;
+  }
+  .cmd-input::placeholder { color: #6a5e4c; }
+  .cmd-results { @apply max-h-80 overflow-y-auto border-t border-gold/10; }
+  .cmd-item { @apply flex items-center gap-3 px-5 py-3 cursor-pointer transition-colors; }
+  .cmd-item:hover, .cmd-item.active { background: rgba(212,168,72,0.06); }
+  .cmd-item .icon {
+    @apply w-8 h-8 rounded-lg flex items-center justify-center text-sm flex-shrink-0;
+    background: rgba(212,168,72,0.06); border: 1px solid rgba(212,168,72,0.1);
+  }
+
+  /* ─── Leaflet overrides ─── */
+  .leaflet-container { background: #0a0908 !important; }
+  .leaflet-control-zoom a {
+    background: rgba(30,26,21,0.9) !important; color: #c4b8a4 !important;
+    border-color: rgba(212,168,72,0.15) !important; backdrop-filter: blur(8px) !important;
+  }
+  .leaflet-control-zoom a:hover { background: rgba(42,33,24,0.95) !important; color: #d4a848 !important; }
+  .leaflet-popup-content-wrapper {
+    background: rgba(21,18,16,0.95) !important; color: #e8dcc8 !important;
+    border: 1px solid rgba(212,168,72,0.15) !important; border-radius: 10px !important;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6) !important; backdrop-filter: blur(12px) !important;
+  }
+  .leaflet-popup-tip { background: rgba(21,18,16,0.95) !important; }
+  .leaflet-popup-close-button { color: #6a5e4c !important; }
+  .leaflet-popup-close-button:hover { color: #d4a848 !important; }
+
+  .castle-popup img { width:100%; max-height:140px; object-fit:cover; border-radius:8px; margin-bottom:8px; border:1px solid rgba(212,168,72,0.12); }
+  .castle-popup h4 { font-size:0.95rem; color:#d4a848; margin:0 0 2px; font-family:'Crimson Pro',serif; }
+  .castle-popup .ar { font-family:'Amiri',serif; font-size:1rem; color:#a8843a; direction:rtl; }
+  .castle-popup .meta { font-size:0.72rem; color:#6a5e4c; margin-top:4px; }
+  .event-popup h4 { font-size:0.88rem; color:#e8dcc8; margin:0 0 4px; font-family:'Crimson Pro',serif; }
+  .event-popup .ar { font-family:'Amiri',serif; font-size:0.95rem; color:#a8843a; direction:rtl; line-height:1.6; margin-bottom:4px; max-height:70px; overflow:hidden; }
+  .event-popup .meta { font-size:0.72rem; color:#6a5e4c; }
+
+  .marker-cluster-small, .marker-cluster-medium, .marker-cluster-large {
+    background: rgba(212,168,72,0.12) !important; border: 2px solid rgba(212,168,72,0.35) !important;
+  }
+  .marker-cluster-small div, .marker-cluster-medium div, .marker-cluster-large div {
+    background: rgba(212,168,72,0.2) !important; color: #e8dcc8 !important;
+    font-family:'Crimson Pro',serif !important; font-weight:600 !important;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .ease-manuscript { transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
+}
+
+/* ─── RTL Support ─── */
+[dir="rtl"] .glass-card:hover { transform: translateY(-3px); }
+[dir="rtl"] .cmd-box { direction: rtl; }
+[dir="rtl"] .cmd-input { text-align: right; }
+[dir="rtl"] .tag { direction: ltr; }
+[dir="rtl"] nav { direction: rtl; }
+[dir="rtl"] .leaflet-control-zoom { right: 10px; left: auto; }
